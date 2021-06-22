@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { count, length } from './number';
 const change = 'Переменная';
 const sum = 1 + 5;
 const a = true;
@@ -12,22 +13,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <p
-          style={{
-            color: 'blue',
-          }}
-        >
-          Изменения в файле для урока 13
-        </p>
-        <p>{change}</p>
-        <p>15</p>
-        <p>{sum}</p>
-        <p> {a && 'a is true'}</p>
-        <p>{a ? 'a is true' : 'a is false'}</p>
-        <p>{null}</p>
-        <p>{undefined}</p>
-        <p>{true}</p>
-        <p>{false}</p>
+        <p>count * length = {count * length}</p>
         <a
           className="App-link"
           href="https://reactjs.org"
