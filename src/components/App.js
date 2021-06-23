@@ -4,13 +4,20 @@ import ItemList from './ItemList/ItemList';
 import Footer from './Footer/Footer';
 
 const count = 5;
-const todoItem = 'Написать todo-приложение';
+
+const items = [
+  { id: 1, value: 'Написать todo-приложение' },
+  { id: 2, value: 'Eще одно важное дело' },
+  { id: 3, value: 'Eще одно важное дело2' },
+  { id: 4, value: 'Eще одно важное дело3' },
+  { id: 5, value: 'Eще одно важное дело4' },
+];
 
 const App = () => (
   <div>
     <h1> todos </h1>
     <InputItem />
-    <ItemList todoItem={todoItem} />
+    <ItemList items={items} />
     <Footer count={count} />
   </div>
 );
