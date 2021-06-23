@@ -1,5 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import { count, length } from './number';
+const change = 'Переменная';
+const sum = 1 + 5;
+const a = true;
 
 function App() {
   return (
@@ -9,7 +13,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <p>Изменения в файле для урока 13</p>
+        <p>count * length = {count * length}</p>
         <a
           className="App-link"
           href="https://reactjs.org"
