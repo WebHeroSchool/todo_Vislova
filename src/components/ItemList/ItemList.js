@@ -9,6 +9,7 @@ const ItemList = ({ items, onClickDone }) => (
         <Item
           value={item.value}
           isDone={item.isDone}
+          id={item.id}
           onClickDone={onClickDone}
         />
       </li>

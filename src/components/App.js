@@ -15,7 +15,19 @@ class App extends React.Component {
     ],
   };
 
-  onClickDone = (isDone) => console.log(isDone);
+  onClickDone = (id) => {
+    const newItemList = this.state.items.map((item) => {
+      const newItem = { ...item };
+
+      if (item.id === id) {
+        newItem.isDone = !item.isDone;
+      }
+
+      return newItem;
+    });
+
+    this.setState({ items: newItemList });
+  };
 
   render() {
     return (
