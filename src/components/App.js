@@ -9,8 +9,8 @@ class App extends React.Component {
     items: [
       { id: 1, value: 'Написать todo-приложение', isDone: false },
       { id: 2, value: 'Eще одно важное дело', isDone: false },
-      { id: 3, value: 'Eще одно важное дело2', isDone: true },
-      { id: 4, value: 'Eще одно важное дело3', isDone: true },
+      { id: 3, value: 'Eще одно важное дело2', isDone: false },
+      { id: 4, value: 'Eще одно важное дело3', isDone: false },
       { id: 5, value: 'Eще одно важное дело4', isDone: false },
     ],
   };
@@ -29,12 +29,21 @@ class App extends React.Component {
     this.setState({ items: newItemList });
   };
 
+  onClickDelete = (id) => {
+    const newItems = this.state.items.filter((item) => item.id !== id);
+    this.setState({ items: newItems });
+  };
+
   render() {
     return (
       <div className={styles.wrap}>
         <h1 className={styles.title}> Важные дела: </h1>
         <InputItem />
-        <ItemList items={this.state.items} onClickDone={this.onClickDone} />
+        <ItemList
+          items={this.state.items}
+          onClickDone={this.onClickDone}
+          onClickDelete={this.onClickDelete}
+        />
         <Footer count={5} />
       </div>
     );
