@@ -5,13 +5,13 @@ import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
 import CheckIcon from '@material-ui/icons/Check';
 
-const Item = ({ value, isDone, onClickDone }) => (
+const Item = ({ value, isDone, onClickDone, id }) => (
   <span
     className={classnames({
       [styles.item]: true,
       [styles.done]: isDone,
     })}
-    onClick={() => onClickDone(isDone)}
+    onClick={() => onClickDone(id)}
   >
     <CheckIcon />
     <span>{value}</span>
