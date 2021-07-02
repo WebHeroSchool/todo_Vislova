@@ -13,6 +13,8 @@ class App extends React.Component {
       { id: 4, value: 'Eще одно важное дело3', isDone: false },
       { id: 5, value: 'Eще одно важное дело4', isDone: false },
     ],
+    count: 5,
+    error: false,
   };
 
   onClickDone = (id) => {
@@ -34,17 +36,39 @@ class App extends React.Component {
     this.setState({ items: newItems });
   };
 
+  onClickAdd = (value) => {
+    if (value !== '') {
+      this.setState((state) => ({
+        items: [
+          ...state.items,
+          {
+            id: state.count + 1,
+            value,
+            isDone: false,
+          },
+        ],
+
+        count: state.count + 1,
+        error: false,
+      }));
+    } else {
+      this.setState((state) => ({
+        error: true,
+      }));
+    }
+  };
+
   render() {
     return (
       <div className={styles.wrap}>
         <h1 className={styles.title}> Важные дела: </h1>
-        <InputItem />
+        <InputItem onClickAdd={this.onClickAdd} error={this.state.error} />
         <ItemList
           items={this.state.items}
           onClickDone={this.onClickDone}
           onClickDelete={this.onClickDelete}
         />
-        <Footer count={5} />
+        <Footer count={this.state.count} />
       </div>
     );
   }
