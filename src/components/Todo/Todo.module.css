@@ -1,6 +1,5 @@
 .wrap {
-  display: flex;
-  justify-content: space-around;
+  display: block;
   margin: auto;
   padding: 20px;
   width: 500px;
@@ -11,12 +10,7 @@
 }
 
 .title {
-  padding: 10px;
-  color: black;
   text-align: center;
   text-transform: uppercase;
-  font-weight: 500;
-  text-decoration: none;
-  background-color: rgb(214, 213, 211);
-  border-radius: 10px;
+  font-weight: 900;
 }
