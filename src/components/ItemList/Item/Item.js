@@ -5,18 +5,52 @@ import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
 import { Checkbox } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
+import PropTypes from 'prop-types';
 
-const Item = ({ value, isDone, onClickDone, id, onClickDelete }) => (
-  <span
-    className={classnames({
-      [styles.item]: true,
-      [styles.done]: isDone,
-    })}
-  >
-    <Checkbox name="checkedB" color="default" onClick={() => onClickDone(id)} />
-    <span>{value}</span>
-    <DeleteSharpIcon onClick={() => onClickDelete(id)} />
-  </span>
-);
+class Item extends React.Component {
+  componentDidMount() {
+    console.log('componentDidMount');
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+  }
+
+  render() {
+    const { value, isDone, onClickDone, id, onClickDelete } = this.props;
+    return (
+      <span
+        className={classnames({
+          [styles.item]: true,
+          [styles.done]: isDone,
+        })}
+      >
+        <Checkbox
+          name="checkedB"
+          color="default"
+          onClick={() => onClickDone(id)}
+        />
+        <span>{value}</span>
+        <DeleteSharpIcon onClick={() => onClickDelete(id)} />
+      </span>
+    );
+  }
+}
+
+Item.defaultProps = {
+  isDone: false,
+};
+
+Item.propTypes = {
+  value: PropTypes.string.isRequired,
+  isDone: PropTypes.bool.isRequired,
+  onClickDone: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  onClickDelete: PropTypes.func.isRequired,
+};
 
 export default Item;
