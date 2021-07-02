@@ -43,6 +43,7 @@ class Item extends React.Component {
 }
 
 Item.defaultProps = {
+  value: 'Задача',
   isDone: false,
 };
 
