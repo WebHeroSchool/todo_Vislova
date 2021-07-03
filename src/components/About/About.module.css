@@ -14,3 +14,19 @@
   text-transform: uppercase;
   font-weight: 900;
 }
+
+.inner {
+  display: flex;
+  justify-content: space-around;
+}
+
+.avatar {
+  width: 200px;
+  height: auto;
+}
+
+.user {
+  width: 200px;
+  height: auto;
+  font-weight: 700;
+}
