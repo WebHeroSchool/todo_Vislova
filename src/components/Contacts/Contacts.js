@@ -4,7 +4,7 @@ import styles from './Contacts.module.css';
 const Contacts = () => {
   return (
     <div className={styles.wrap}>
-      <h2 className={styles.title}>Contacts</h2>
+      <h2 className={styles.title}>Контакты</h2>
     </div>
   );
 };

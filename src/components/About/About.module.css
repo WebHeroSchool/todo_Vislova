@@ -1,32 +1,139 @@
 .wrap {
+  flex: 4;
   display: block;
-  margin: auto;
   padding: 20px;
-  width: 500px;
-  background-color: rgb(253, 252, 250);
+  margin: auto;
+  min-height: calc(100vh - 40px);
   font-family: Arial, Helvetica, sans-serif;
-  border: 1px solid black;
-  border-radius: 10px;
+  box-shadow: 0 0 10px #263137;
 }
 
 .title {
+  margin: 0 0 2rem 0;
   text-align: center;
   text-transform: uppercase;
+  font-size: 1.5rem;
   font-weight: 900;
 }
 
 .inner {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 1rem 2rem;
 }
 
 .avatar {
-  width: 200px;
-  height: auto;
+  width: 300px;
+  box-shadow: 0 0 10px #263137;
+  border-radius: 10px 0 0 10px;
 }
 
 .user {
-  width: 200px;
-  height: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem;
+  box-shadow: 0 0 10px #263137;
+  border-radius: 0 10px 10px 0;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.5rem;
   font-weight: 700;
 }
+
+.bio {
+  width: 80%;
+  line-height: 2rem;
+}
+
+.blog {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #BBC9D0;
+  text-decoration: none;
+  background-color: #263137;
+}
+
+.repo__list {
+  display: flex;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.repo__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 1rem;
+  padding: 1rem 2rem;
+  width: 90%;
+  box-shadow: 0 0 15px #263137;
+  border-radius: 10px;
+}
+
+.repo__name {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.repo__inner {
+  display: flex;
+  align-items: center;
+}
+
+.repo__info {
+  display: block;
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+  color: #4F6773;
+}
+
+.repo__link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #BBC9D0;
+  text-decoration: none;
+  background-color: #263137;
+}
+
+.repo__language {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  display: block;
+  margin-right: 0.5rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.css {
+  background-color: #563d7c;
+}
+
+.vue {
+  background-color: #41b883;
+}
+
+.html {
+  background-color: #e34c26;
+}
+
+.js {
+  background-color: #f1e05a;
+}
+
+.nth {
+  background-color: #87A0AC;
+}
+

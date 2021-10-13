@@ -66,7 +66,7 @@ const Todo = () => {
 
   return (
     <div className={styles.wrap}>
-      <h1 className={styles.title}> Важные дела: </h1>
+      <h2 className={styles.title}> Список дел: </h2>
       <InputItem onClickAdd={onClickAdd} error={error} />
       <ItemList
         items={items}

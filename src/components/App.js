@@ -7,22 +7,25 @@ import Contacts from './Contacts/Contacts';
 
 const App = () => {
   return (
-    <Router>
-      <nav className={styles.wrap}>
-        <Link to="/" className={styles.title}>
-          Обо мне
-        </Link>
-        <Link to="/todo" className={styles.title}>
-          Дела
-        </Link>
-        <Link to="/contacts" className={styles.title}>
-          Контакты
-        </Link>
-      </nav>
-      <Route path="/" exact component={About} />
-      <Route path="/todo" component={Todo} />
-      <Route path="/contacts" component={Contacts} />
-    </Router>
+    <div className={styles.wrapper}>
+      <Router className={styles.container}>
+        <nav className={styles.nav}>
+          <Link to="/" className={styles.link}>
+            Обо мне
+          </Link>
+          <Link to="/todo" className={styles.link}>
+            Дела
+          </Link>
+          <Link to="/contacts" className={styles.link}>
+            Контакты
+          </Link>
+        </nav>
+        <Route path="/" exact component={About} />
+        <Route path="/todo" component={Todo} />
+        <Route path="/contacts" component={Contacts} />
+      </Router>
+    </div>
+    
   );
 };
 
