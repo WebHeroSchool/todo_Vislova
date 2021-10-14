@@ -6,6 +6,13 @@
   box-shadow: 0 0 10px #263137;
 }
 
+.loader {
+  min-height: calc(100vh - 40px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .title {
   margin: 0 0 2rem 0;
   font-family: 'Ruda', sans-serif;
@@ -54,6 +61,7 @@
 
 .blog {
   display: block;
+  margin-bottom: 1.5rem;
   padding: 0.5rem 1rem;
   font-family: 'Ruda', sans-serif;
   color: #BBC9D0;
@@ -69,6 +77,65 @@
   background-color: #607D8B;
   transform: scaleY(1.1);
   transition: transform 0.5s ease-out, color 0.5s ease-out, background-color 0.5s ease-out;
+}
+
+.socials {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.twitter {
+  display: block;
+  margin-right: 1rem;
+  width: 30px;
+  height: 30px;
+  background-image: url('../../img/Twitter.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: transform 1s ease-out;
+}
+
+.vk {
+  display: block;
+  margin-right: 1rem;
+  width: 30px;
+  height: 30px;
+  background-image: url('../../img/Vk.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: transform 1s ease-out;
+}
+
+.gmail {
+  display: block;
+  margin-right: 1rem;
+  width: 30px;
+  height: 30px;
+  background-image: url('../../img/Gmail.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: transform 1s ease-out;
+}
+
+.telegram {
+  display: block;
+  margin-right: 1rem;
+  width: 30px;
+  height: 30px;
+  background-image: url('../../img/Telegram.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: transform 1s ease-out;
+}
+
+.twitter:hover, .vk:hover, .gmail:hover, .telegram:hover {
+  transform: scale(1.2);
+  transition: transform 1s ease-out;
 }
 
 .repo__list {
@@ -106,7 +173,7 @@
 .repo__info {
   display: block;
   margin-right: 0.5rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #4F6773;
 }
 
@@ -160,5 +227,27 @@
 
 .nth {
   background-color: #87A0AC;
+}
+
+.star {
+  display: block;
+  margin-right: 0.3rem;
+  width: 15px;
+  height: 15px;
+  background-image: url('../../img/star.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.fork {
+  display: block;
+  margin-right: 0.3rem;
+  width: 15px;
+  height: 15px;
+  background-image: url('../../img/fork.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 

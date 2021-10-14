@@ -73,7 +73,9 @@ class About extends React.Component {
     return (
       <div className={styles.wrap}>
         {isLoading ? (
-          <CircularProgress color="inherit" />
+          <div className={styles.loader}>
+            <CircularProgress color="inherit"/>
+          </div>
         ) : (
           <div>
             <div className={css(stylesAnimate.fadeInRight)}><h2 className={styles.title}> Обо мне</h2></div>
@@ -102,7 +104,13 @@ class About extends React.Component {
                     </p>
                     <a href={infoUser === undefined ? '#' : infoUser.blog} className={styles.blog} target='_blank'>
                       Ссылка на мой сайт
-                    </a>.
+                    </a>
+                    <div className={styles.socials}>
+                      <a href="https://twitter.com/lAmNotKsenia" className={styles.twitter} target="_blank"></a>
+                      <a href="mailto:kseniavislova@gmail.com" className={styles.gmail} target="_blank"></a>
+                      <a href="https://vk.com/kseeelis" className={styles.vk} target="_blank"></a>
+                      <a href="https://t.me/kvislova"  className={styles.telegram} target="_blank"></a>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -133,9 +141,21 @@ class About extends React.Component {
                                       })}></span>
                               <span className={styles.repo__info}>{repo.language}</span>
                             </span>
-                            <span className={styles.repo__info}>{repo.stargazers_count}</span>
-                            <span className={styles.repo__info}>{repo.forks}</span>
-                            <span className={styles.repo__info}> Last update: {repo.updated_at}</span>
+                            <div className={styles.repo__inner}>
+                              <span className={styles.star}></span>
+                              <span className={styles.repo__info}>
+                                {repo.stargazers_count}</span>
+                            </div>
+                            <div className={styles.repo__inner}>
+                              <span className={styles.fork}></span>
+                              <span className={styles.repo__info}>
+                                {repo.forks}</span>
+                              </div>
+                            <span className={styles.repo__info}> Last update: {new Date(repo.updated_at).toLocaleString('en-US', {
+                                    day: 'numeric',
+                                    month: 'short',
+                                    year: 'numeric',
+                                  })}</span>
                             <span className={styles.repo__info}> {repo.description}</span>
                             </div>
                             </div>
