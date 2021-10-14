@@ -3,6 +3,19 @@ import InputItem from '../InputItem/InputItem';
 import ItemList from '../ItemList/ItemList';
 import Footer from '../Footer/Footer';
 import styles from './Todo.module.css';
+import { fadeInRight, slideInRight } from 'react-animations';
+import { StyleSheet, css } from 'aphrodite';
+
+const stylesAnimate = StyleSheet.create({
+  fadeInRight: {
+    animationName: fadeInRight,
+    animationDuration: '1s'
+  },
+  slideInRight: {
+    animationName: slideInRight,
+    animationDuration: '1s'
+  },
+})
 
 const Todo = () => {
   const initialState = {
@@ -66,14 +79,19 @@ const Todo = () => {
 
   return (
     <div className={styles.wrap}>
-      <h2 className={styles.title}> Список дел: </h2>
-      <InputItem onClickAdd={onClickAdd} error={error} />
-      <ItemList
-        items={items}
-        onClickDone={onClickDone}
-        onClickDelete={onClickDelete}
-      />
-      <Footer count={count} />
+      <div className={styles.container}>
+        <div className={css(stylesAnimate.fadeInRight)}><h2 className={styles.title}> Список дел: </h2></div>
+        
+        <div className={css(stylesAnimate.slideInRight)}>
+          <InputItem onClickAdd={onClickAdd} error={error} />
+          <ItemList
+            items={items}
+            onClickDone={onClickDone}
+            onClickDelete={onClickDelete}
+          />
+          <Footer count={count} />
+      </div>
+      </div>
     </div>
   );
 };

@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Ruda:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Ruda:wght@900&display=swap');
 /*font-family: 'Roboto Slab', serif;
 font-family: 'Ruda', sans-serif;*/
 
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: 'Ruda', Arial, Helvetica, sans-serif;
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
   color: #263137;
   background: rgb(187,201,208);
   background: linear-gradient(90deg, rgba(187,201,208,1) 0%, rgba(156,176,186,1) 50%, rgba(113,143,157,1) 100%);
@@ -23,37 +23,45 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: calc(100vh - 40px);
   margin: 0 15px 0 0;
-  padding: 3rem;
+  padding: 20px;
   min-height: calc(100vh - 40px);
 }
 
 .link {
   position: fixed;
   padding: 1rem 2rem;
+  font-family: 'Ruda', sans-serif;
   color: #BBC9D0;
   text-align: center;
   text-transform: uppercase;
-  font-weight: 700;
   text-decoration: none;
   background-color: #263137;
+  box-shadow: 0 0 10px #263137;
+  transition: transform 0.5s ease-out, color 0.5s ease-out, background-color 0.5s ease-out;
+}
+
+.link:hover {
+  color: #263137;
+  background-color: #607D8B;
+  transform: scaleY(1.1);
+  transition: transform 0.5s ease-out, color 0.5s ease-out, background-color 0.5s ease-out;
 }
 
 .link:nth-child(1) {
-  top: 35%;
+  top: 15%;
   margin-top: -2.5rem;
 }
 
 .link:nth-child(2) {
-  top: 50%;
+  top: 28%;
   margin-top: -2.5rem;
 }
 
-.link:nth-child(3) {
-  top: 65%;
-  margin-top: -2.5rem;
-}
-
-.link:not(:last-child) {
-  margin-bottom: 2rem;
+.active {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #263137;
+  background-color: #607D8B;
 }

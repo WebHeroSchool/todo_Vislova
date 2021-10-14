@@ -139,7 +139,7 @@ class About extends React.Component {
                             <span className={styles.repo__info}> {repo.description}</span>
                             </div>
                             </div>
-                            <a href={repo.html_url} className={styles.repo__link}>Побробнее</a>
+                            <a href={repo.html_url} className={styles.repo__link}>Подробнее</a>
                           </li>
                         ))}
                   </ul>

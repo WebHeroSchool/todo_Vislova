@@ -1,28 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import styles from './App.module.css';
 import Todo from './Todo/Todo';
 import About from './About/About';
-import Contacts from './Contacts/Contacts';
 
 const App = () => {
   return (
     <div className={styles.wrapper}>
       <Router className={styles.container}>
         <nav className={styles.nav}>
-          <Link to="/" className={styles.link}>
+          <NavLink to="/" className={styles.link} activeClassName={styles.active} exact>
             Обо мне
-          </Link>
-          <Link to="/todo" className={styles.link}>
+          </NavLink>
+          <NavLink to="/todo" className={styles.link} activeClassName={styles.active} exact>
             Дела
-          </Link>
-          <Link to="/contacts" className={styles.link}>
-            Контакты
-          </Link>
+          </NavLink>
         </nav>
         <Route path="/" exact component={About} />
         <Route path="/todo" component={Todo} />
-        <Route path="/contacts" component={Contacts} />
       </Router>
     </div>
     
