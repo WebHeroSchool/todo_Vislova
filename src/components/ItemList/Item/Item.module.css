@@ -1,11 +1,16 @@
 .item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
   padding: 10px;
-  border-bottom: 1px solid #c2c2c0;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #263137;
+  transition: background-color 1s ease-in-out;
 }
 
 .done {
-  background-color: #e1e0de;
+  background-color: #BBC9D0;
   text-decoration: line-through;
+  transition: background-color 1s ease-in-out;
 }

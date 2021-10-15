@@ -24,20 +24,22 @@ class Item extends React.Component {
   render() {
     const { value, isDone, onClickDone, id, onClickDelete } = this.props;
     return (
-      <span
+      <div
         className={classnames({
           [styles.item]: true,
           [styles.done]: isDone,
         })}
       >
-        <Checkbox
-          name="checkedB"
-          color="default"
-          onClick={() => onClickDone(id)}
-        />
-        <span>{value}</span>
+        <div>
+          <Checkbox
+            name="checkedB"
+            color="default"
+            onClick={() => onClickDone(id)}
+          />
+          <span>{value}</span>
+        </div>
         <DeleteSharpIcon color="inherit" onClick={() => onClickDelete(id)} />
-      </span>
+      </div>
     );
   }
 }

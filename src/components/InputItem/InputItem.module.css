@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
+  margin-bottom: 4rem;
 }
 
 .textfield {
@@ -18,4 +19,5 @@
 
 .button {
   flex: 1;
+  line-height: 1em;
 }

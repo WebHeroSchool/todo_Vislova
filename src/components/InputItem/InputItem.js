@@ -63,8 +63,13 @@ class InputItem extends React.Component {
           />
             {(this.state.inputError) && <div className={styles.error}>{this.state.errorText}</div>}
         </div>
-        <Button variant="contained" onClick={this.onClickButton} className={styles.button}>
-          Добавить задачу
+        <Button 
+          variant="outlined" 
+          color="inherit"
+          onClick={this.onClickButton}
+          onKeyPress={this.onClickButton}
+          className={styles.button}>
+           Добавить задачу
         </Button>
       </div>
     );

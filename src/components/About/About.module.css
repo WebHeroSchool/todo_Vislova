@@ -68,6 +68,7 @@
   text-decoration: none;
   text-transform: uppercase;
   background-color: #263137;
+  border-radius: 4px;
   box-shadow: 0 0 10px #263137;
   transition: transform 0.5s ease-out, color 0.5s ease-out, background-color 0.5s ease-out;
 }
@@ -185,6 +186,7 @@
   text-decoration: none;
   text-transform: uppercase;
   background-color: #263137;
+  border-radius: 4px;
   box-shadow: 0 0 10px #263137;
   transition: transform 0.5s ease-out, color 0.5s ease-out, background-color 0.5s ease-out;
 }
