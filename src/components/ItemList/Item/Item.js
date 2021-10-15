@@ -36,7 +36,7 @@ class Item extends React.Component {
           onClick={() => onClickDone(id)}
         />
         <span>{value}</span>
-        <DeleteSharpIcon onClick={() => onClickDelete(id)} />
+        <DeleteSharpIcon color="inherit" onClick={() => onClickDelete(id)} />
       </span>
     );
   }

@@ -83,7 +83,7 @@ const Todo = () => {
         <div className={css(stylesAnimate.fadeInRight)}><h2 className={styles.title}> Список дел: </h2></div>
         
         <div className={css(stylesAnimate.slideInRight)}>
-          <InputItem onClickAdd={onClickAdd} error={error} />
+          <InputItem onClickAdd={onClickAdd} error={error}  items={items} />
           <ItemList
             items={items}
             onClickDone={onClickDone}
