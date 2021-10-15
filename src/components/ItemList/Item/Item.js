@@ -30,11 +30,12 @@ class Item extends React.Component {
           [styles.done]: isDone,
         })}
       >
-        <div>
+        <div className={styles.inner}>
           <Checkbox
             name="checkedB"
             color="default"
             onClick={() => onClickDone(id)}
+            className={styles.checkbox}
           />
           <span>{value}</span>
         </div>

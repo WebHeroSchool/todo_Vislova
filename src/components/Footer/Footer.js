@@ -3,9 +3,9 @@ import styles from './Footer.module.css';
 import PropTypes from 'prop-types';
 
 const Footer = ({ count }) => (
-  <div className={styles.text}>
-    Осталось выполнить следующее кол-во дел:{' '}
-    <span className={styles.count}>{count}</span>
+  <div className={styles.inner}>
+    <div className={styles.text}>Осталось выполнить следующее количество дел:</div>{' '}
+    <div className={styles.count}>{count}</div>
   </div>
 );
 
