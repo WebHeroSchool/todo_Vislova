@@ -33,6 +33,24 @@ const Todo = () => {
   const [items, setItems] = useState(initialState.items);
   const [count, setCount] = useState(initialState.count);
   const [error, setError] = useState(initialState.error);
+  const [filterItems, setFilterItems] = useState(initialState.items);
+
+  const filterTodo = (status) => {
+    let res = []
+    console.log(status);
+    switch(status) {
+      case 'all': 
+        res = items;
+        break;
+      case 'done': 
+        res = items.filter(item => item.isDone);
+        break;
+      case 'active': 
+        res = items.filter(item => !item.isDone);
+        break;
+    }
+    setFilterItems(res);
+  }
 
   useEffect(() => {
     console.log('componentDidMount');
@@ -40,6 +58,11 @@ const Todo = () => {
   useEffect(() => {
     console.log('componentDidUpdate');
   }, [items]);
+  useEffect(() => {
+    console.log('filterItems DidUpdate');
+  }, [filterItems]);
+
+
 
   const onClickDone = (id) => {
     const newItemList = items.map((item) => {
@@ -97,11 +120,14 @@ const Todo = () => {
         <div className={css(stylesAnimate.slideInRight)}>
           <InputItem onClickAdd={onClickAdd} error={error}  items={items} />
           <ItemList
-            items={items}
+            items={filterItems}
             onClickDone={onClickDone}
             onClickDelete={onClickDelete}
           />
-          <Footer count={count} />
+          <Footer 
+            count={count}
+            filterTodo={filterTodo}
+          />
       </div>
       </div>
     </div>

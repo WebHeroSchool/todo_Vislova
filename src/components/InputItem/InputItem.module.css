@@ -21,3 +21,7 @@
   flex: 1;
   line-height: 1em;
 }
+
+.button:hover {
+  font-weight: 700;
+}

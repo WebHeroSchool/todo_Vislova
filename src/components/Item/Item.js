@@ -22,6 +22,7 @@ class Item extends React.Component {
             color="default"
             onClick={() => onClickDone(id)}
             className={styles.checkbox}
+            checked={isDone}
           />
           <span>{value}</span>
         </div>
