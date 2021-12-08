@@ -1,10 +1,11 @@
 import React from 'react';
+import RepoItem from '../RepoItem/RepoItem';
 import styles from './About.module.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Octokit } from '@octokit/rest';
-import classNames from "classnames";
 import { fadeInRight, slideInRight } from 'react-animations';
 import { StyleSheet, css } from 'aphrodite';
+import ReactPaginate from 'react-paginate';
 
 const stylesAnimate = StyleSheet.create({
   fadeInRight: {
@@ -122,44 +123,8 @@ class About extends React.Component {
                     {repoList === undefined
                       ? 'неизвестно'
                       : repoList.map((repo) => (
-                          <li key={repo.id} className={styles.repo__item}>
-                            <div>
-                            <span className={styles.repo__name}>{repo.name}</span>
-                            <div className={styles.repo__inner}>
-                            <span className={styles.repo__language}>
-                              <span className={
-                                      repo.language === null
-                                      ? repo.language = 'nothing'
-                                        :
-                                      classNames({
-                                        [styles.icon]: true,
-                                        [styles.html]: repo.language === 'HTML',
-                                        [styles.css]: repo.language === 'CSS',
-                                        [styles.js]: repo.language === 'JavaScript',
-                                        [styles.vue]: repo.language === 'Vue',
-                                        [styles.nth]: repo.language === 'nothing',
-                                      })}></span>
-                              <span className={styles.repo__info}>{repo.language}</span>
-                            </span>
-                            <div className={styles.repo__inner}>
-                              <span className={styles.star}></span>
-                              <span className={styles.repo__info}>
-                                {repo.stargazers_count}</span>
-                            </div>
-                            <div className={styles.repo__inner}>
-                              <span className={styles.fork}></span>
-                              <span className={styles.repo__info}>
-                                {repo.forks}</span>
-                              </div>
-                            <span className={styles.repo__info}> Last update: {new Date(repo.updated_at).toLocaleString('en-US', {
-                                    day: 'numeric',
-                                    month: 'short',
-                                    year: 'numeric',
-                                  })}</span>
-                            <span className={styles.repo__info}> {repo.description}</span>
-                            </div>
-                            </div>
-                            <a href={repo.html_url} className={styles.repo__link}>Подробнее</a>
+                          <li key={repo.id}>
+                            <RepoItem repo={repo}/>
                           </li>
                         ))}
                   </ul>

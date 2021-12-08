@@ -46,9 +46,14 @@ const Todo = () => {
       const newItem = { ...item };
 
       if (item.id === id) {
+        if (item.isDone) {
+          setCount(count + 1);
+        } else {
+          setCount(count - 1);
+        }
         newItem.isDone = !item.isDone;
+        
       }
-
       return newItem;
     });
 
@@ -57,7 +62,13 @@ const Todo = () => {
 
   const onClickDelete = (id) => {
     const newItems = items.filter((item) => item.id !== id);
-    setCount((count) => count - 1);
+    items.forEach((item) => {
+      if(item.id === id) {
+        if (!item.isDone) {
+          setCount(count - 1);
+        }
+      }
+    });
     setItems(newItems);
   };
 
@@ -66,12 +77,12 @@ const Todo = () => {
       const NewItemList = [
         ...items,
         {
-          id: count + 1,
+          id: Math.round(new Date() * Math.random),
           value,
           isDone: false,
         },
       ];
-      setCount((count) => count + 1);
+      setCount(count + 1);
       setItems(NewItemList);
     } else {
       setError((error) => !error);
