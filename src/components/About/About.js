@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import RepoItem from '../RepoItem/RepoItem';
 import styles from './About.module.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -19,59 +19,53 @@ const stylesAnimate = StyleSheet.create({
 
 const octokit = new Octokit();
 
-class About extends React.Component {
-  state = {
-    isLoading: true,
-  };
+const About = () => {
+  const url = 'https://api.github.com/users/KseniaVislova'
+  const [repoList, setRepoList] = useState([0,0]);
+  const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
+  const [errorMessage, setMessage] = useState('');
+  const [infoUser, setInfoUser] = useState('');
 
-  componentDidMount() {
-    octokit.repos
+  const getinfo = async() => {
+   octokit.repos
       .listForUser({
         username: 'KseniaVislova',
       })
       .then(({ data }) => {
-        this.setState({
-          repoList: data.filter((repo) => repo.visibility === 'public'),
-          isLoading: false,
-        });
+        console.log(data);
+        const arr = data.filter((repo) => repo.visibility === 'public');
+        setRepoList(arr);
+        setLoading(false);
       })
-
       .catch((err) => {
-        this.setState({
-          isLoading: false,
-          isError: true,
-          errorMessage: err,
-        });
+        setLoading(false);
+        setError(true);
+        setMessage(err);
       });
     octokit.users
       .getByUsername({
         username: 'KseniaVislova',
       })
       .then(({ data }) => {
-        this.setState({
-          infoUser: data,
-          isLoading: false,
-        });
+        setInfoUser(data);
+        setLoading(false);
       })
       .catch((err) => {
-        this.setState({
-          isLoading: false,
-          isError: true,
-          errorMessage: err,
-        });
+        setLoading(false);
+        setError(true);
+        setMessage(err);
       });
   }
 
-  render() {
-    const { isLoading, repoList, infoUser, errorMessage, isError } = this.state;
-    {
-      console.log(repoList);
-    }
-    {
-      console.log(infoUser);
-    }
-    return (
-      <div className={styles.wrap}>
+  useEffect(() => {
+    getinfo();
+  }, []);
+
+  console.log(repoList)
+
+  return (
+    <div className={styles.wrap}>
         {isLoading ? (
           <div className={styles.loader}>
             <CircularProgress color="inherit"/>
@@ -133,8 +127,7 @@ class About extends React.Component {
           </div>
         )}
       </div>
-    );
-  }
+  )
 }
 
 export default About;
