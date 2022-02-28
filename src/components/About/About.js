@@ -5,7 +5,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { Octokit } from '@octokit/rest';
 import { fadeInRight, slideInRight } from 'react-animations';
 import { StyleSheet, css } from 'aphrodite';
-import ReactPaginate from 'react-paginate';
 
 const stylesAnimate = StyleSheet.create({
   fadeInRight: {
