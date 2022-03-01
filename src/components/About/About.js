@@ -20,49 +20,63 @@ const stylesAnimate = StyleSheet.create({
 const octokit = new Octokit();
 
 const About = () => {
-  const url = 'https://api.github.com/users/KseniaVislova'
-  const [repoList, setRepoList] = useState([0,0]);
+  const url = 'https://api.github.com/users/KseniaVislova';
+  const [info, setInfo] = useState([]);
+  const [repoList, setRepoList] = useState([]);
+  const [arrRepo, setArrRepo] = useState([])
+  const [pages, setPages] = useState(0);
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const [errorMessage, setMessage] = useState('');
   const [infoUser, setInfoUser] = useState('');
 
-  const getinfo = async() => {
-   octokit.repos
-      .listForUser({
-        username: 'KseniaVislova',
-      })
-      .then(({ data }) => {
-        console.log(data);
-        const arr = data.filter((repo) => repo.visibility === 'public');
-        setRepoList(arr);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-        setError(true);
-        setMessage(err);
-      });
-    octokit.users
-      .getByUsername({
-        username: 'KseniaVislova',
-      })
-      .then(({ data }) => {
-        setInfoUser(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-        setError(true);
-        setMessage(err);
-      });
+  const setList = (array) => {
+    console.log('start setList')
+    console.log(array);
+    setRepoList(arrRepo[0]);
+    console.log('end setList')
   }
 
-  useEffect(() => {
-    getinfo();
-  }, []);
+  const getPages = (array, pages) => {
+    console.log('start getPages');
+    const arrPages = [];
+    let j = 0;
+    for(let i = 0; i < pages; i += 1) {
+      let arr = [];
+      arr.push(array[j]);
+      if(array[j + 1] !== undefined) arr.push(array[j + 1]);
+      if(array[j + 2] !== undefined) arr.push(array[j + 2]);
+      if(array[j + 3] !== undefined) arr.push(array[j + 3]);
+      arrPages.push(arr);
+      j += 4;
+    }
+    setArrRepo(arrPages);
+    setRepoList(arrPages[0]);
+    console.log(arrPages);
+    console.log('end getPages');
+  }
 
-  console.log(repoList)
+  const getInfo = async() => {
+    console.log('start getInfo')
+    try {
+      let res = await (await fetch(url)).json();
+      let repos = await (await fetch('https://api.github.com/users/KseniaVislova/repos')).json();
+      setInfo(repos);
+      setInfoUser(res);
+      setLoading(false);
+      setPages(Math.ceil(repos.length / 4));
+      getPages(repos, Math.ceil(repos.length / 4));
+    } catch(error) { 
+      setLoading(false);
+      setError(true);
+      setMessage(error.message);
+    } 
+    console.log('end getInfo')
+  }
+
+  useEffect(async() => {
+    await getInfo();
+  }, []);
 
   return (
     <div className={styles.wrap}>
