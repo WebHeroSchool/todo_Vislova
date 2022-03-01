@@ -141,6 +141,15 @@
   transition: transform 1s ease-out;
 }
 
+.btn__list {
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+}
+
 .repo__list {
   display: flex;
   padding: 0;

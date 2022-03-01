@@ -25,10 +25,31 @@ const About = () => {
   const [repoList, setRepoList] = useState([]);
   const [arrRepo, setArrRepo] = useState([])
   const [pages, setPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0)
+  const [pagination, setPagination] = useState([])
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const [errorMessage, setMessage] = useState('');
   const [infoUser, setInfoUser] = useState('');
+
+  const changePage = (e) => {
+    setCurrentPage(e.target.innerHTML);
+    setRepoList(arrRepo[e.target.innerHTML - 1]);
+  }
+
+  const setPaginationBtn = (pages) => {
+    let arr = [];
+    if(pages < 10) {
+      for (let i = 1; i <= pages; i++) {
+        arr.push(i)
+      }
+    } else {
+      for (let i = 1; i <= 10; i++) {
+        arr.push(i)
+      }
+    }
+    setPagination(arr);
+  }
 
   const setList = (array) => {
     console.log('start setList')
@@ -66,6 +87,8 @@ const About = () => {
       setLoading(false);
       setPages(Math.ceil(repos.length / 4));
       getPages(repos, Math.ceil(repos.length / 4));
+      setPaginationBtn(Math.ceil(repos.length / 4));
+      setCurrentPage(1);
     } catch(error) { 
       setLoading(false);
       setError(true);
@@ -126,6 +149,13 @@ const About = () => {
                  <h3 className={styles.title}>Мои работы:</h3>
                 </div>
                 <div className={css(stylesAnimate.slideInRight)}>
+                  <ul className={styles.btn__list}>
+                    {repoList === undefined
+                        ? 'неизвестно'
+                        : pagination.map((item) => (
+                            <li key={item}><button onClick={changePage}>{item}</button></li>
+                          ))}
+                  </ul>
                   <ul className={styles.repo__list}>
                     {repoList === undefined
                       ? 'неизвестно'
