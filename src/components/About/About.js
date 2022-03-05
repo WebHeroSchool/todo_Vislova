@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from 'react';
 import RepoItem from '../RepoItem/RepoItem';
+import classnames from "classnames";
 import styles from './About.module.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Octokit } from '@octokit/rest';
@@ -175,13 +176,13 @@ const About = () => {
                 </div>
                 <div className={css(stylesAnimate.slideInRight)}>
                   <ul className={styles.btn__list}>
-                    <li><button onClick={goPrev} disabled={isPrev}>prev</button></li>
+                    <li><button className={classnames([styles.paginate_btn], {[styles.noactive]: isPrev === true})} onClick={goPrev} disabled={isPrev}>prev</button></li>
                     {repoList === undefined
                         ? 'неизвестно'
                         : pagination.map((item) => (
-                            <li key={item}><button onClick={changePage}>{item}</button></li>
+                            <li key={item}><button className={classnames([styles.paginate_btn], {[styles.paginate_active]: currentPage == item})} onClick={changePage}>{item}</button></li>
                           ))}
-                    <li><button onClick={goNext} disabled={isNext}>next</button></li>
+                    <li><button className={classnames([styles.paginate_btn], {[styles.noactive]: isNext === true})}onClick={goNext} disabled={isNext}>next</button></li>
                   </ul>
                   <ul className={styles.repo__list}>
                     {repoList === undefined
