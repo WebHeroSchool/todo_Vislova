@@ -31,10 +31,35 @@ const About = () => {
   const [isError, setError] = useState(false);
   const [errorMessage, setMessage] = useState('');
   const [infoUser, setInfoUser] = useState('');
+  const [isPrev, setPrev] = useState(true);
+  const [isNext, setNext] = useState(false);
+
+  const checkDisabled = (page) => {
+    console.log('checkDisabled start')
+    console.log(page)
+    console.log(arrRepo.length)
+    setPrev(false);
+    setNext(false);
+    if(page == 1) setPrev(true);
+    if(page == arrRepo.length) setNext(true);
+  }
 
   const changePage = (e) => {
-    setCurrentPage(e.target.innerHTML);
+    setCurrentPage(parseInt(e.target.innerHTML));
     setRepoList(arrRepo[e.target.innerHTML - 1]);
+    checkDisabled(e.target.innerHTML);
+  }
+
+  const goNext = () => {
+    setCurrentPage(parseInt(currentPage + 1));
+    setRepoList(arrRepo[parseInt(currentPage)]);
+    checkDisabled(parseInt(currentPage + 1));
+  }
+
+  const goPrev = () => {
+    setCurrentPage(parseInt(currentPage - 1));
+    setRepoList(arrRepo[parseInt(currentPage)]);
+    checkDisabled(parseInt(currentPage - 1));
   }
 
   const setPaginationBtn = (pages) => {
@@ -150,11 +175,13 @@ const About = () => {
                 </div>
                 <div className={css(stylesAnimate.slideInRight)}>
                   <ul className={styles.btn__list}>
+                    <li><button onClick={goPrev} disabled={isPrev}>prev</button></li>
                     {repoList === undefined
                         ? 'неизвестно'
                         : pagination.map((item) => (
                             <li key={item}><button onClick={changePage}>{item}</button></li>
                           ))}
+                    <li><button onClick={goNext} disabled={isNext}>next</button></li>
                   </ul>
                   <ul className={styles.repo__list}>
                     {repoList === undefined
