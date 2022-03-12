@@ -36,6 +36,8 @@ const About = () => {
   }, [pages])
 
   const getButtons = useCallback(() => {
+    console.log(currentPage)
+    console.log(pages)
     let array = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2];
     let result = [];
     if (pages === 1) {
@@ -52,10 +54,17 @@ const About = () => {
     }
     if ((currentPage === 1 || currentPage === 2) && pages > 4) {
       setButtons([1,2,3,4,5])
+    } else if ((currentPage === pages) && pages > 4) {
+      console.log('last')
+      setButtons([currentPage - 4, currentPage - 3, currentPage - 2, currentPage - 1, currentPage])
+    } else if ((currentPage === pages - 1) && pages > 4) {
+      console.log('pre-last')
+      setButtons([currentPage - 3, currentPage - 2, currentPage - 1, currentPage, currentPage + 1])
     } else {
       array.forEach(item => {
         if(checkPage(item)) result.push(item)
       })
+
       setButtons(result)
     }
   }, [pages, currentPage, checkPage])
@@ -80,6 +89,7 @@ const About = () => {
   }
 
   const goPrev = () => {
+    console.log(currentPage - 1)
     setCurrentPage(parseInt(currentPage - 1));
     setRepoList(arrRepo[parseInt(currentPage)]);
     checkDisabled(parseInt(currentPage - 1));
