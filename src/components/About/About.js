@@ -24,13 +24,47 @@ const About = () => {
   const [arrRepo, setArrRepo] = useState([])
   const [pages, setPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0)
-  const [pagination, setPagination] = useState([])
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
   const [errorMessage, setMessage] = useState('');
   const [infoUser, setInfoUser] = useState('');
   const [isPrev, setPrev] = useState(true);
   const [isNext, setNext] = useState(false);
+  const [buttons, setButtons] = useState([1,2,3,4,5])
+
+  const checkPage = (number) => {
+    if (number <= pages && number > 0) return true;
+  }
+
+  const getButtons = () => {
+    let array = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2];
+    let result = [];
+    if (pages === 1) {
+      setButtons([1])
+    }
+    if ((currentPage === 1 || currentPage === 2) && pages > 1) {
+      setButtons([1,2])
+      setNext(true)
+    }
+    if ((currentPage === 1 || currentPage === 2) && pages > 2) {
+      setButtons([1,2,3])
+      setNext(true)
+    }
+    if ((currentPage === 1 || currentPage === 2) && pages > 3) {
+      setButtons([1,2,3,4])
+      setNext(true)
+    }
+    if ((currentPage === 1 || currentPage === 2) && pages > 4) {
+      setButtons([1,2,3,4,5])
+      setNext(true)
+    } else {
+      array.forEach(item => {
+        if(checkPage(item)) result.push(item)
+      })
+      setButtons(result)
+      setPrev(true)
+    }
+  }
 
   const checkDisabled = (page) => {
     console.log('checkDisabled start')
@@ -72,20 +106,6 @@ const About = () => {
     checkDisabled(arrRepo.length);
   }
 
-  const setPaginationBtn = (pages) => {
-    let arr = [];
-    if(pages < 10 ) {
-      for (let i = 1; i <= pages; i++) {
-        arr.push(i)
-      }
-    } else {
-      for (let i = 1; i <= 10; i++) {
-        arr.push(i)
-      }
-    }
-    setPagination(arr);
-  }
-
   const getPages = (array, pages) => {
     console.log('start getPages');
     const arrPages = [];
@@ -115,7 +135,7 @@ const About = () => {
       setLoading(false);
       setPages(Math.ceil(repos.length / 4));
       getPages(repos, Math.ceil(repos.length / 4));
-      setPaginationBtn(Math.ceil(repos.length / 4));
+      //setPaginationBtn(Math.ceil(repos.length / 4));
       setCurrentPage(1);
     } catch(error) { 
       setLoading(false);
@@ -128,6 +148,14 @@ const About = () => {
   useEffect(async() => {
     await getInfo();
   }, []);
+
+  useEffect(() => {
+    getButtons()
+  }, [pages])
+
+  useEffect(() => {
+    getButtons()
+  }, [currentPage])
 
   return (
     <div className={styles.wrap}>
@@ -183,7 +211,7 @@ const About = () => {
                     &#5130;</button></li>
                     {repoList === undefined
                         ? 'неизвестно'
-                        : pagination.map((item) => (
+                        : buttons.map((item) => (
                             <li key={item}><button className={classnames([styles.paginate_btn], {[styles.paginate_active]: currentPage == item})} onClick={changePage}>{item}</button></li>
                           ))}
                     <li><button className={classnames([styles.paginate_btn], {[styles.noactive]: isNext === true})}onClick={goNext} disabled={isNext}>	
