@@ -160,7 +160,6 @@ const About = () => {
                         src={infoUser.avatar_url}
                         alt="Avatar"
                         className={styles.avatar}
-
                       />
                     )}
                     <div className={styles.user}>
@@ -170,14 +169,14 @@ const About = () => {
                     <p className={styles.bio}>
                       {infoUser === undefined ? ' неизвестно' : infoUser.bio}
                     </p>
-                    <a href={infoUser === undefined ? '#' : infoUser.blog} className={styles.blog} target='_blank'>
+                    <a href={infoUser === undefined ? '#' : infoUser.blog} className={styles.blog} target='_blank' rel="noreferrer">
                       Ссылка на мой сайт
                     </a>
                     <div className={styles.socials}>
-                      <a href="https://twitter.com/lAmNotKsenia" className={styles.twitter} target="_blank"></a>
-                      <a href="mailto:kseniavislova@gmail.com" className={styles.gmail} target="_blank"></a>
-                      <a href="https://vk.com/kseeelis" className={styles.vk} target="_blank"></a>
-                      <a href="https://t.me/kvislova"  className={styles.telegram} target="_blank"></a>
+                      <a href="https://twitter.com/lAmNotKsenia" className={styles.twitter} target="_blank" rel="noreferrer"><span></span></a>
+                      <a href="mailto:kseniavislova@gmail.com" className={styles.gmail} target="_blank" rel="noreferrer"><span></span></a>
+                      <a href="https://vk.com/kseeelis" className={styles.vk} target="_blank" rel="noreferrer"><span></span></a>
+                      <a href="https://t.me/kvislova"  className={styles.telegram} target="_blank" rel="noreferrer"><span></span></a>
                     </div>
                     </div>
                   </div>
@@ -193,7 +192,7 @@ const About = () => {
                     {repoList === undefined
                         ? 'неизвестно'
                         : buttons.map((item) => (
-                            <li key={item}><button className={classnames([styles.paginate_btn], {[styles.paginate_active]: currentPage == item})} onClick={changePage}>{item}</button></li>
+                            <li key={item}><button className={classnames([styles.paginate_btn], {[styles.paginate_active]: currentPage === Number(item)})} onClick={changePage}>{item}</button></li>
                           ))}
                     <li><button className={classnames([styles.paginate_btn], {[styles.noactive]: isNext === true})}onClick={goNext} disabled={isNext}>	
                     &#5125;</button></li>
