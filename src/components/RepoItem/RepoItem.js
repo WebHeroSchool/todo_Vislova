@@ -50,12 +50,8 @@ class RepoItem extends React.Component {
   }
 }
 
-/*RepoItem.propTypes = {
-  value: PropTypes.string.isRequired,
-  isDone: PropTypes.bool.isRequired,
-  onClickDone: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
-  onClickDelete: PropTypes.func.isRequired,
-};*/
+RepoItem.propTypes = {
+  repo: PropTypes.object.isRequired,
+};
 
 export default RepoItem;

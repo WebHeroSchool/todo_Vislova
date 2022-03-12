@@ -48,6 +48,7 @@ const Todo = () => {
       case 'active': 
         res = items.filter(item => !item.isDone);
         break;
+      default: res = items;
     }
     setFilterItems(res);
   }

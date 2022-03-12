@@ -3,7 +3,7 @@ import styles from './Item.module.css';
 import classnames from 'classnames';
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
 import { Checkbox } from '@material-ui/core';
-import CheckIcon from '@material-ui/icons/Check';
+//import CheckIcon from '@material-ui/icons/Check';
 import PropTypes from 'prop-types';
 
 class Item extends React.Component {

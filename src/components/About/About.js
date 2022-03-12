@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from 'react';
+import {React, useState, useEffect, useCallback} from 'react';
 import RepoItem from '../RepoItem/RepoItem';
 import classnames from "classnames";
 import styles from './About.module.css';
@@ -19,7 +19,6 @@ const stylesAnimate = StyleSheet.create({
 
 const About = () => {
   const url = 'https://api.github.com/users/KseniaVislova';
-  const [info, setInfo] = useState([]);
   const [repoList, setRepoList] = useState([]);
   const [arrRepo, setArrRepo] = useState([])
   const [pages, setPages] = useState(0);
@@ -32,11 +31,11 @@ const About = () => {
   const [isNext, setNext] = useState(false);
   const [buttons, setButtons] = useState([1,2,3,4,5])
 
-  const checkPage = (number) => {
+  const checkPage = useCallback((number) => {
     if (number <= pages && number > 0) return true;
-  }
+  }, [pages])
 
-  const getButtons = () => {
+  const getButtons = useCallback(() => {
     let array = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2];
     let result = [];
     if (pages === 1) {
@@ -44,33 +43,28 @@ const About = () => {
     }
     if ((currentPage === 1 || currentPage === 2) && pages > 1) {
       setButtons([1,2])
-      setNext(true)
     }
     if ((currentPage === 1 || currentPage === 2) && pages > 2) {
       setButtons([1,2,3])
-      setNext(true)
     }
     if ((currentPage === 1 || currentPage === 2) && pages > 3) {
       setButtons([1,2,3,4])
-      setNext(true)
     }
     if ((currentPage === 1 || currentPage === 2) && pages > 4) {
       setButtons([1,2,3,4,5])
-      setNext(true)
     } else {
       array.forEach(item => {
         if(checkPage(item)) result.push(item)
       })
       setButtons(result)
-      setPrev(true)
     }
-  }
+  }, [pages, currentPage, checkPage])
 
   const checkDisabled = (page) => {
     setPrev(false);
     setNext(false);
-    if(page == 1) setPrev(true);
-    if(page == arrRepo.length) setNext(true);
+    if(Number(page) === 1) setPrev(true);
+    if(Number(page) === arrRepo.length) setNext(true);
   }
 
   const changePage = (e) => {
@@ -119,11 +113,10 @@ const About = () => {
     setRepoList(arrPages[0]);
   }
 
-  const getInfo = async() => {
+  const fetchData = useCallback(async() => {
     try {
       let res = await (await fetch(url)).json();
       let repos = await (await fetch('https://api.github.com/users/KseniaVislova/repos')).json();
-      setInfo(repos);
       setInfoUser(res);
       setLoading(false);
       setPages(Math.ceil(repos.length / 4));
@@ -134,19 +127,16 @@ const About = () => {
       setError(true);
       setMessage(error.message);
     } 
-  }
+  }, [url]) 
 
-  useEffect(async() => {
-    await getInfo();
-  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   useEffect(() => {
     getButtons()
-  }, [pages])
-
-  useEffect(() => {
-    getButtons()
-  }, [currentPage])
+  }, [getButtons])
 
   return (
     <div className={styles.wrap}>
