@@ -67,9 +67,6 @@ const About = () => {
   }
 
   const checkDisabled = (page) => {
-    console.log('checkDisabled start')
-    console.log(page)
-    console.log(arrRepo.length)
     setPrev(false);
     setNext(false);
     if(page == 1) setPrev(true);
@@ -107,7 +104,6 @@ const About = () => {
   }
 
   const getPages = (array, pages) => {
-    console.log('start getPages');
     const arrPages = [];
     let j = 0;
     for(let i = 0; i < pages; i += 1) {
@@ -121,12 +117,9 @@ const About = () => {
     }
     setArrRepo(arrPages);
     setRepoList(arrPages[0]);
-    console.log(arrPages);
-    console.log('end getPages');
   }
 
   const getInfo = async() => {
-    console.log('start getInfo')
     try {
       let res = await (await fetch(url)).json();
       let repos = await (await fetch('https://api.github.com/users/KseniaVislova/repos')).json();
@@ -135,14 +128,12 @@ const About = () => {
       setLoading(false);
       setPages(Math.ceil(repos.length / 4));
       getPages(repos, Math.ceil(repos.length / 4));
-      //setPaginationBtn(Math.ceil(repos.length / 4));
       setCurrentPage(1);
     } catch(error) { 
       setLoading(false);
       setError(true);
       setMessage(error.message);
     } 
-    console.log('end getInfo')
   }
 
   useEffect(async() => {
