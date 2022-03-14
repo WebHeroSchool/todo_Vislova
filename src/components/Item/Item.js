@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 class Item extends React.Component {
   render() {
     const { value, isDone, onClickDone, id, onClickDelete } = this.props;
+    console.log(isDone)
     return (
       <div
         className={classnames({

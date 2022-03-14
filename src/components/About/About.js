@@ -64,9 +64,9 @@ const About = () => {
       array.forEach(item => {
         if(checkPage(item)) result.push(item)
       })
-
       setButtons(result)
     }
+    console.log(buttons)
   }, [pages, currentPage, checkPage])
 
   const checkDisabled = (page) => {

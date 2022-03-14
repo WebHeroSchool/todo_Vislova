@@ -34,23 +34,10 @@ const Todo = () => {
   const [count, setCount] = useState(initialState.count);
   const [error, setError] = useState(initialState.error);
   const [filterItems, setFilterItems] = useState(initialState.items);
+  const [status, setStatus] = useState('all')
 
   const filterTodo = (status) => {
-    let res = []
-    console.log(status);
-    switch(status) {
-      case 'all': 
-        res = items;
-        break;
-      case 'done': 
-        res = items.filter(item => item.isDone);
-        break;
-      case 'active': 
-        res = items.filter(item => !item.isDone);
-        break;
-      default: res = items;
-    }
-    setFilterItems(res);
+    setStatus(status);
   }
 
   useEffect(() => {
@@ -76,11 +63,9 @@ const Todo = () => {
           setCount(count - 1);
         }
         newItem.isDone = !item.isDone;
-        
       }
       return newItem;
     });
-
     setItems(newItemList);
   };
 
@@ -98,20 +83,37 @@ const Todo = () => {
 
   const onClickAdd = (value) => {
     if (value !== '') {
-      const NewItemList = [
+      const newItemList = [
         ...items,
         {
-          id: Math.round(new Date() * Math.random),
+          id: Math.round(new Date() * Math.random()),
           value,
           isDone: false,
         },
       ];
       setCount(count + 1);
-      setItems(NewItemList);
+      setItems(newItemList);
     } else {
       setError((error) => !error);
     }
   };
+
+  useEffect(() => {
+    let res = [];
+    switch(status) {
+      case 'all': 
+        res = items;
+        break;
+      case 'done': 
+        res = items.filter(item => item.isDone);
+        break;
+      case 'active': 
+        res = items.filter(item => !item.isDone);
+        break;
+      default: res = items;
+    }
+    setFilterItems(res);
+  }, [status, items])
 
   return (
     <div className={styles.wrap}>
