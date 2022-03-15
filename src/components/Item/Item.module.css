@@ -7,6 +7,7 @@
   border-radius: 4px;
   box-shadow: 0 0 10px #263137;
   transition: background-color 1s ease-in-out;
+  cursor: move;
 }
 
 .done {

@@ -20,11 +20,11 @@ const stylesAnimate = StyleSheet.create({
 const Todo = () => {
   const initialState = {
     items: [
-      { id: 1, value: 'Написать todo-приложение', isDone: false },
-      { id: 2, value: 'Eще одно важное дело', isDone: false },
-      { id: 3, value: 'Eще одно важное дело2', isDone: false },
-      { id: 4, value: 'Eще одно важное дело3', isDone: false },
-      { id: 5, value: 'Eще одно важное дело4', isDone: false },
+      { id: 1, value: 'Написать todo-приложение', isDone: false, order: 1 },
+      { id: 2, value: 'Eще одно важное дело', isDone: false, order: 2 },
+      { id: 3, value: 'Eще одно важное дело2', isDone: false, order: 3 },
+      { id: 4, value: 'Eще одно важное дело3', isDone: false, order: 4 },
+      { id: 5, value: 'Eще одно важное дело4', isDone: false, order: 5 },
     ],
     count: 5,
     error: false,

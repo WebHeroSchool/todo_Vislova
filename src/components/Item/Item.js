@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Item.module.css';
 import classnames from 'classnames';
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
@@ -6,31 +6,28 @@ import { Checkbox } from '@material-ui/core';
 //import CheckIcon from '@material-ui/icons/Check';
 import PropTypes from 'prop-types';
 
-class Item extends React.Component {
-  render() {
-    const { value, isDone, onClickDone, id, onClickDelete } = this.props;
-    console.log(isDone)
-    return (
-      <div
-        className={classnames({
-          [styles.item]: true,
-          [styles.done]: isDone,
-        })}
-      >
-        <div className={styles.inner}>
-          <Checkbox
-            name="checkedB"
-            color="default"
-            onClick={() => onClickDone(id)}
-            className={styles.checkbox}
-            checked={isDone}
-          />
-          <span>{value}</span>
-        </div>
-        <DeleteSharpIcon color="inherit" onClick={() => onClickDelete(id)} />
+const Item = ({ value, isDone, onClickDone, id, onClickDelete }) => {
+
+  return (
+    <div
+      className={classnames({
+        [styles.item]: true,
+        [styles.done]: isDone,
+      })}
+    >
+      <div className={styles.inner}>
+        <Checkbox
+          name="checkedB"
+          color="default"
+          onClick={() => onClickDone(id)}
+          className={styles.checkbox}
+          checked={isDone}
+        />
+        <span>{value}</span>
       </div>
-    );
-  }
+      <DeleteSharpIcon color="inherit" onClick={() => onClickDelete(id)} />
+    </div>
+  );
 }
 
 Item.defaultProps = {
