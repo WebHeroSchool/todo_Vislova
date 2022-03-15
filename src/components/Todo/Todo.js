@@ -89,6 +89,7 @@ const Todo = () => {
           id: Math.round(new Date() * Math.random()),
           value,
           isDone: false,
+          order: items.length + 1
         },
       ];
       setCount(count + 1);
@@ -97,6 +98,46 @@ const Todo = () => {
       setError((error) => !error);
     }
   };
+
+  const [currentItem, setCurrent] = useState(null);
+
+  const dragStartHandler = (e, item) => {
+    setCurrent(item);
+  }  
+
+  const dragLeaveHandler = (e) => {
+    e.preventDefault();
+  }
+
+  const dragEndHandler = (e) => {
+    e.preventDefault();
+  }
+
+  const dragOverHandler = (e) => {
+    e.preventDefault();
+  }
+
+  const dropHandler = (e, item) => {
+    e.preventDefault();
+    const list = filterItems.map(i => {
+      if(i.id === item.id) {
+        return {...i, order: currentItem.order}
+      }
+      if(i.id === currentItem.id) {
+        return {...i, order: item.order}
+      }
+      return i;
+  });
+    setItems(list);
+    setFilterItems(list);
+  } 
+
+  const sortItems = (a, b) => {
+    if (a.order > b.order) {
+      return 1;
+    }
+    return -1;
+  }
 
   useEffect(() => {
     let res = [];
@@ -123,9 +164,14 @@ const Todo = () => {
         <div className={css(stylesAnimate.slideInRight)}>
           <InputItem onClickAdd={onClickAdd} error={error}  items={items} />
           <ItemList
-            items={filterItems}
+            items={filterItems.sort(sortItems)}
             onClickDone={onClickDone}
             onClickDelete={onClickDelete}
+            dragStartHandler={dragStartHandler}
+            dragLeaveHandler={dragLeaveHandler}
+            dragEndHandler={dragEndHandler}
+            dragOverHandler={dragOverHandler}
+            dropHandler={dropHandler}
           />
           <Footer 
             count={count}
