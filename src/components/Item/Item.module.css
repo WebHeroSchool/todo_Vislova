@@ -19,8 +19,36 @@
 .inner {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .checkbox {
   margin-right: 1rem;
+}
+
+.textfield {
+  display: flex;
+  align-items: end;
+  margin-right: 1rem;
+}
+
+.error {
+  margin-left: 8px;
+  font-size: 0.7rem;
+  color: red;
+}
+
+.button {
+  padding: 0.5rem;
+  background: transparent;
+  font-size: 0.7rem;
+  line-height: 0.5em;
+  border: 1px solid #263137;
+  border-radius: 4px;
+  transition: all 1s;
+}
+
+.button:hover {
+  font-weight: 700;
+  transition: all 1s;
 }

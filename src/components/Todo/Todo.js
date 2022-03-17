@@ -20,11 +20,11 @@ const stylesAnimate = StyleSheet.create({
 const Todo = () => {
   const initialState = {
     items: [
-      { id: 1, value: 'Написать todo-приложение', isDone: false, order: 1 },
-      { id: 2, value: 'Eще одно важное дело', isDone: false, order: 2 },
-      { id: 3, value: 'Eще одно важное дело2', isDone: false, order: 3 },
-      { id: 4, value: 'Eще одно важное дело3', isDone: false, order: 4 },
-      { id: 5, value: 'Eще одно важное дело4', isDone: false, order: 5 },
+      { id: 1, value: 'Написать todo-приложение', isDone: false, order: 1, canChange: false },
+      { id: 2, value: 'Eще одно важное дело', isDone: false, order: 2, canChange: false },
+      { id: 3, value: 'Eще одно важное дело2', isDone: false, order: 3, canChange: false },
+      { id: 4, value: 'Eще одно важное дело3', isDone: false, order: 4, canChange: false },
+      { id: 5, value: 'Eще одно важное дело4', isDone: false, order: 5, canChange: false },
     ],
     count: 5,
     error: false,
@@ -99,6 +99,19 @@ const Todo = () => {
     }
   };
 
+  const onClickChange = (id, item) => {
+    const newItemList = items.map((i) => {
+      const newItem = { ...i };
+      if (newItem.id === id) {
+        newItem.value = item;
+      }
+      newItem.canChange = false;
+      return newItem;
+    });
+    console.log(newItemList);
+    setItems(newItemList);
+  }
+
   const [currentItem, setCurrent] = useState(null);
 
   const dragStartHandler = (e, item) => {
@@ -139,6 +152,19 @@ const Todo = () => {
     return -1;
   }
 
+  const rewriteText = (id) => {
+    const newItemList = items.map((item) => {
+      const newItem = { ...item };
+      if (item.id === id) {
+        newItem.canChange = true;
+      } else {
+        newItem.canChange = false; 
+      }
+      return newItem;
+    });
+    setItems(newItemList);
+  }
+
   useEffect(() => {
     let res = [];
     switch(status) {
@@ -172,6 +198,8 @@ const Todo = () => {
             dragEndHandler={dragEndHandler}
             dragOverHandler={dragOverHandler}
             dropHandler={dropHandler}
+            rewriteText={rewriteText}
+            onClickChange={onClickChange}
           />
           <Footer 
             count={count}

@@ -1,9 +1,9 @@
-import {React, useState, useEffect, useCallback} from 'react';
+import React from 'react';
 import Item from '../Item/Item';
 import styles from './ItemList.module.css';
 import PropTypes from 'prop-types';
 
-const ItemList = ({ items, onClickDone, onClickDelete, dragStartHandler, dragLeaveHandler, dragEndHandler, dragOverHandler, dropHandler }) => {
+const ItemList = ({ items, onClickDone, onClickDelete, dragStartHandler, dragLeaveHandler, dragEndHandler, dragOverHandler, dropHandler, rewriteText, onClickChange }) => {
 
   return <div>
     <ul className={styles.list}>
@@ -20,8 +20,11 @@ const ItemList = ({ items, onClickDone, onClickDelete, dragStartHandler, dragLea
             value={item.value}
             isDone={item.isDone}
             id={item.id}
+            canChange = {item.canChange}
             onClickDone={onClickDone}
             onClickDelete={onClickDelete}
+            rewriteText={rewriteText}
+            onClickChange={onClickChange}
           />
         </li>
       ))}

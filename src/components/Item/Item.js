@@ -3,11 +3,22 @@ import styles from './Item.module.css';
 import classnames from 'classnames';
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
 import { Checkbox } from '@material-ui/core';
-//import CheckIcon from '@material-ui/icons/Check';
+import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 
-const Item = ({ value, isDone, onClickDone, id, onClickDelete }) => {
+const Item = ({ value, isDone, onClickDone, id, onClickDelete, rewriteText, canChange, onClickChange}) => {
 
+  const [item, setItem] = useState(value);
+  const [inputError, setInputError] = useState(false);
+  const [errorText, setErrorText] = useState('');
+
+  const onClickButton = (id) => {
+
+    console.log(value)
+    console.log(item)
+    onClickChange(id, item)
+  }
+ 
   return (
     <div
       className={classnames({
@@ -23,7 +34,31 @@ const Item = ({ value, isDone, onClickDone, id, onClickDelete }) => {
           className={styles.checkbox}
           checked={isDone}
         />
-        <span>{value}</span>
+        {canChange 
+        ? <div className={styles.textfield}>
+          <TextField
+            id={inputError ? "outlined-error-helper-text" : "outlined-full-width"}
+            label={'Change'}
+            style={{ margin: 8 }}
+            placeholder="Добавь новую задачу"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={item}
+            onChange={(event) =>
+              setItem(event.target.value)
+            }
+            error={inputError}
+          />
+          <button
+            onClick={() => onClickButton(id, item)}
+            className={styles.button}>
+            Изменить
+          </button>
+        </div>
+        : <span onDoubleClick={() => rewriteText(id)}>{value}</span>}
       </div>
       <DeleteSharpIcon color="inherit" onClick={() => onClickDelete(id)} />
     </div>
