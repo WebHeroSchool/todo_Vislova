@@ -6,37 +6,70 @@ import PropTypes from 'prop-types';
 
 class InputItem extends React.Component {
   state = {
-    InputValue: '',
+    inputValue: '',
+    inputError: false,
+    errorText: '',
   };
 
   onClickButton = () => {
-    this.props.onClickAdd(this.state.InputValue);
-    this.setState({ InputValue: '' });
+    this.setState({
+      inputValue: '',
+      inputError: false
+    });
+
+    const {items, onClickAdd} = this.props;
+    let inputError = false;
+
+    items.forEach(item => {
+      if(item.value === this.state.inputValue) {
+          inputError = true
+      }
+    });
+
+    if(this.state.inputValue === '' || inputError) {
+      this.setState({
+        inputError: true,
+        errorText: inputError ? 'Такое дело уже добавлено' : 'Пустое поле'
+      })
+    } else{
+      this.setState({
+          inputValue: '',
+          inputError: false
+      });
+
+    onClickAdd(this.state.inputValue);
+  }
   };
 
   render() {
     return (
       <div className={styles.wrap}>
-        <TextField
-          id="outlined-full-width"
-          label={'New task'}
-          style={{ margin: 8 }}
-          placeholder="Добавь новую задачу"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="outlined"
-          value={this.state.InputValue}
-          onChange={(event) =>
-            this.setState({ InputValue: event.target.value.toUpperCase() })
-          }
-          helperText={this.props.error ? 'Пустое поле' : ''}
-          color={this.props.error ? 'secondary' : 'primary'}
-        />
-        <Button variant="contained" onClick={this.onClickButton}>
-          Добавить задачу
+        <div className={styles.textfield}>
+          <TextField
+            id={this.state.inputError ? "outlined-error-helper-text" : "outlined-full-width"}
+            label={'New task'}
+            style={{ margin: 8 }}
+            placeholder="Добавь новую задачу"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={this.state.inputValue}
+            onChange={(event) =>
+              this.setState({inputValue: event.target.value})
+            }
+            error={this.state.inputError}
+          />
+            {(this.state.inputError) && <div className={styles.error}>{this.state.errorText}</div>}
+        </div>
+        <Button 
+          variant="outlined" 
+          color="inherit"
+          onClick={this.onClickButton}
+          onKeyPress={this.onClickButton}
+          className={styles.button}>
+           Добавить задачу
         </Button>
       </div>
     );

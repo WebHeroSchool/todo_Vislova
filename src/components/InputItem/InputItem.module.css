@@ -1,4 +1,27 @@
 .wrap {
   display: flex;
   flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.textfield {
+  flex: 5;
+  flex-direction: column;
+  margin-right: 2rem;
+}
+
+.error {
+  margin-left: 8px;
+  font-size: 0.7rem;
+  color: red;
+}
+
+.button {
+  flex: 1;
+  line-height: 1em;
+}
+
+.button:hover {
+  font-weight: 700;
 }

@@ -1,32 +1,208 @@
 .wrap {
+  flex: 7;
   display: block;
-  margin: auto;
   padding: 20px;
-  width: 500px;
-  background-color: rgb(253, 252, 250);
-  font-family: Arial, Helvetica, sans-serif;
-  border: 1px solid black;
-  border-radius: 10px;
+  min-height: calc(100vh - 40px);
+  box-shadow: 0 0 10px #263137;
+}
+
+.loader {
+  min-height: calc(100vh - 40px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .title {
+  margin: 0 0 2rem 0;
+  font-family: 'Ruda', sans-serif;
   text-align: center;
   text-transform: uppercase;
+  font-size: 1.8rem;
   font-weight: 900;
 }
 
 .inner {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto 2rem;
+  padding: 1rem 2rem;
+  box-shadow: 0 0 10px #263137;
+  border-radius: 10px;
 }
 
 .avatar {
   width: 200px;
-  height: auto;
+  height: 200px;
+  border-radius: 50%;
 }
 
 .user {
-  width: 200px;
-  height: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem 3rem;
+}
+
+.name {
+  margin: 0;
+  font-family: 'Ruda', sans-serif;
+  text-transform: uppercase;
+  font-size: 1.5rem;
   font-weight: 700;
 }
+
+.bio {
+  width: 80%;
+  line-height: 2rem;
+}
+
+.blog {
+  display: block;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  font-family: 'Ruda', sans-serif;
+  color: #BBC9D0;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: #263137;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #263137;
+  transition: transform 0.5s ease-out, color 0.5s ease-out, background-color 0.5s ease-out;
+}
+
+.blog:hover {
+  color: #263137;
+  background-color: #607D8B;
+  transform: scaleY(1.1);
+  transition: transform 0.5s ease-out, color 0.5s ease-out, background-color 0.5s ease-out;
+}
+
+.socials {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.twitter {
+  display: block;
+  margin-right: 1rem;
+  width: 30px;
+  height: 30px;
+  background-image: url('../../img/Twitter.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: transform 1s ease-out;
+}
+
+.vk {
+  display: block;
+  margin-right: 1rem;
+  width: 30px;
+  height: 30px;
+  background-image: url('../../img/Vk.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: transform 1s ease-out;
+}
+
+.gmail {
+  display: block;
+  margin-right: 1rem;
+  width: 30px;
+  height: 30px;
+  background-image: url('../../img/Gmail.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: transform 1s ease-out;
+}
+
+.telegram {
+  display: block;
+  margin-right: 1rem;
+  width: 30px;
+  height: 30px;
+  background-image: url('../../img/Telegram.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: transform 1s ease-out;
+}
+
+.twitter:hover, .vk:hover, .gmail:hover, .telegram:hover {
+  transform: scale(1.2);
+  transition: transform 1s ease-out;
+}
+
+.paginate_btn {
+  padding: 0.5rem;
+  font-family: 'Ruda', sans-serif;
+  color: #BBC9D0;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: #263137;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #263137;
+  cursor: pointer;
+  transition: transform 0.5s ease-out, color 0.5s ease-out, background-color 0.5s ease-out;
+}
+
+.paginate_btn:hover {
+  color: #263137;
+  background-color: #607D8B;
+  transform: scaleY(1.1);
+  transition: transform 0.5s ease-out, color 0.5s ease-out, background-color 0.5s ease-out;
+}
+
+.paginate_active {
+  color: #263137;
+  background-color: #607D8B;
+  transition: transform 0.5s ease-out, color 0.5s ease-out, background-color 0.5s ease-out;
+}
+
+.paginate_active:hover {
+  color: #BBC9D0;
+  transition: transform 0.5s ease-out, color 0.5s ease-out;
+}
+
+.noactive {
+  color: #4d5b63; 
+}
+
+.noactive:hover {
+  color: #4d5b63; 
+  background-color: #263137;
+  transform: scaleY(1);
+}
+
+.btn__list {
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+}
+
+.repo__list {
+  display: flex;
+  padding: 0;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.repo__list li {
+  width: 90%;
+  margin: 0 auto 1rem;
+}
+
